@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwen-VL 工具集</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎨✨ Qwen-VL 工具集</h1>
+    <p class="subtitle">阿里千问强大的 AI 工具 - 图像生成和故事创作</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('image')">🎨 图像生成</button>
+      <button class="tab" onclick="switchTab('writer')">📝 AI 写作</button>
+    </div>
+
+    <!-- 图像生成面板 -->
+    <div id="imagePanel" class="panel active">
+      <div class="card">
+        <h2>🎨 生成图片</h2>
+        
+        <div class="form-group">
+          <label>描述你想要生成的图片</label>
+          <textarea id="prompt" placeholder="例如：一只可爱的小狗在公园里玩耍"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>图片尺寸</label>
+          <select id="size">
+            <option value="512*512">512×512</option>
+            <option value="1024*1024" selected>1024×1024</option>
+            <option value="1024*1792">1024×1792</option>
+            <option value="1920*1080">1920×1080</option>
+          </select>
+        </div>
+
+        <button onclick="generateImage()" class="btn primary" id="generateBtn">🎨 生成图片</button>
+      </div>
+
+      <div class="card">
+        <h2>🖼️ 生成结果</h2>
+        <div id="resultContainer">
+          <p class="placeholder">生成的图片将显示在这里...</p>
+        </div>
+        
+        <div class="result-actions" id="resultActions" style="display: none;">
+          <button onclick="downloadImage()" class="btn secondary">💾 下载图片</button>
+          <button onclick="clearResults()" class="btn danger">🗑️ 清空</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📚 历史记录</h2>
+        <div id="historyList" class="history-list">
+          <p class="placeholder">暂无历史记录</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 写作面板 -->
+    <div id="writerPanel" class="panel">
+      <div class="card">
+        <h2>📝 新建文章</h2>
+        
+        <div class="form-group">
+          <label>文章主题</label>
+          <input type="text" id="topic" placeholder="例如：科幻冒险、童话故事...">
+        </div>
+
+        <div class="form-group">
+          <label>写作风格</label>
+          <select id="style">
+            <option value="story">故事</option>
+            <option value="picturebook">绘本</option>
+            <option value="screenplay">剧本</option>
+            <option value="article">普通文章</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>章节数量</label>
+          <input type="number" id="chapters" value="5" min="1" max="20">
+        </div>
+
+        <div class="form-group">
+          <label>每章字数</label>
+          <input type="number" id="length" value="1000" min="100" max="5000">
+        </div>
+
+        <button onclick="createArticle()" class="btn primary" id="createBtn">🎨 生成文章</button>
+      </div>
+
+      <div class="card">
+        <h2>📋 文章列表</h2>
+        <div id="articleList" class="article-list">
+          <p class="placeholder">暂无文章</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 id="articleTitle">文章详情</h2>
+        <div class="article-actions" id="articleDetailActions" style="display: none;">
+          <button onclick="hideDetail()" class="btn secondary">← 返回列表</button>
+          <button onclick="exportArticle('markdown')" class="btn secondary">📄 导出 Markdown</button>
+          <button onclick="exportArticle('picturebook')" class="btn secondary">🖼️ 导出绘本</button>
+          <button onclick="deleteArticle()" class="btn danger">🗑️ 删除</button>
+        </div>
+        <div id="articleContent" class="article-content">
+          <!-- 文章内容将在这里显示 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>AI 正在创作中...</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "qwen-tools",
+  "version": "1.0.0",
+  "description": "阿里千问 Qwen-VL 工具集 - 图像生成器和AI写作器",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "axios": "^1.6.0",
+    "fs-extra": "^11.2.0",
+    "marked": "^12.0.0"
+  }
+}
